@@ -97,18 +97,48 @@ let books = [
   you can remove the placeholder query once your first one has been implemented 
 */
 
-const typeDefs = `
-  type Query {
-    dummy: Int
+const typeDefs = /* GraphQL */ ` 
+
+  type Author {
+      name: String!
+      born: String
+      bookCount: Int!
+      id: ID!
+    }
+
+  type Book {
+    title: String!
+    author: String!
+    published: String 
+    genres: [String]!
+    id: ID!
   }
+  type Query {
+      bookCount: Int!
+      authorCount: Int!
+      allAuthors: [Author!]!
+      allBooks: [Book!]!
+      findAuthor(name: String!): Author
+      findBook(name: String!): Book
+}
 `
 
 const resolvers = {
-  Query: {
-    dummy: () => 0,
+  Author: {
+    bookCount: (root) => {
+      return  books.filter(book => book.author === root.name).length
+          },
   },
-}
-
+  Query: {
+    bookCount : () => books.length,
+    authorCount : () => authors.length,
+    allBooks: () => books,
+    allAuthors: () => authors,
+    findBook: (root, args) =>
+      books.find(p => p.name === args.name)
+  }
+  }
+  
 const server = new ApolloServer({
   typeDefs,
   resolvers,
