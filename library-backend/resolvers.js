@@ -22,12 +22,12 @@ const resolvers = {
 			console.log(args.author)
      	if (args.author) {
 				const author = await Author.findOne({ name: args.author })
-				return Book.find({ author: author._id })
+				return Book.find({ author: author._id }).populate('author')
 			}
     
       if (args.genre){
         console.log(args.genre)
-        return await Book.find({ genres: args.genre}) //obs fixa dehä
+        return  await Book.find({ genres: args.genre }).populate('author') //obs fixa dehä
       }
        return Book.find({}).populate('author')
         
