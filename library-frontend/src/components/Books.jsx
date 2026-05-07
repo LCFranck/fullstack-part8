@@ -1,10 +1,16 @@
+
+
+
 const Books = (props) => {
   if (!props.show) {
     return null
   }
 
-  const books = []
+  const books = props.books
 
+if (!books){
+  return <div> <h1> GONE </h1></div>
+}
   return (
     <div>
       <h2>books</h2>
