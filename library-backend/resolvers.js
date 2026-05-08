@@ -39,7 +39,11 @@ const resolvers = {
 
   },
     findBook: async (root, args) => {
-			return await Book.find({title: args.name})
+			return await Book.find({title: args.name}).populate('author')
+     // books.find(p => p.name === args.name),
+  },
+   findAuthor: async (root, args) => {
+			return await Author.findOne({name: args.name})
      // books.find(p => p.name === args.name),
   }
 
