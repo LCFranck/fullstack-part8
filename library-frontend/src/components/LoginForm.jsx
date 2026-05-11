@@ -14,14 +14,14 @@ const LoginForm = (props) => {
       localStorage.setItem('library-user-token', token)
       props.setPage("authors")
     },
-   onError: (error) => {
-  console.log("error logging in", error)
-  setError(true)
+    onError: (error) => {
+      console.log("error logging in", error)
+      setError(true)
 
-  setTimeout(() => {
-    setError(false)
-  }, 5000)
-}
+      setTimeout(() => {
+        setError(false)
+      }, 5000)
+    }
   })
 
   const submit = (event) => {

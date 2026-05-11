@@ -2,9 +2,7 @@ import {  useQuery } from '@apollo/client/react'
 
 import {ALL_BOOKS, ME} from '../queries'
 const Recommendations = (props) => {
-  if (!props.show || !props.token) {
-    return null
-  }
+
 
   const user = useQuery(ME)
 
@@ -15,8 +13,8 @@ const Recommendations = (props) => {
     skip: !genre
   })
 
-  if (user.loading || booksResult.loading) {
-    return <div>loading...</div>
+  if (user.loading || booksResult.loading || !props.show || !props.token) {
+    return null
   }
   return (
     <div>

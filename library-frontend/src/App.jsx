@@ -11,8 +11,8 @@ import Recommendations from './components/Recommendations'
 const App = () => {
   const [page, setPage] = useState('authors')
   const [token, setToken] = useState(
-      localStorage.getItem('library-user-token'),
-    )
+    localStorage.getItem('library-user-token'),
+  )
   
   const authorResult = useQuery(ALL_AUTHORS)
 
@@ -28,7 +28,7 @@ const App = () => {
   }
 
   const authors = authorResult.data.allAuthors
-    console.log(token, "token!")
+  console.log(token, "token!")
 
 
   return (
